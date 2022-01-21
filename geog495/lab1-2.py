@@ -36,13 +36,13 @@ allY = np.concatenate((precinctY, WNY, NNY, SWNY, ENY, SNY))
 # Visualization
 fig = go.Figure(data=[go.Sankey(
     node = dict(
-      pad = 10,
-      thickness = 20,
-      line = dict(color = "white", width = 0.5),
+      pad = 20,
+      thickness = 10,
       label = pNn,
       x = allX,
       y = allY,
-      color = ["#FF0000", "#00FFFF", "#800080", "#FFFF00", "#00FF00"]
+      hovertemplate = "%{label}",
+      color = ["#F4AC74", "#9DF474", "#96EAE9", "#E696EA", "#E34270"]
     ),
     link = dict(
       source = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -51,14 +51,20 @@ fig = go.Figure(data=[go.Sankey(
                 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],  # indices correspond to labels, eg A1, A2, A1, B1, ...
       target = list(range(5, 67)),
-      value = dispatches
+      value = dispatches,
+      color = ['#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74',
+              '#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474',
+              '#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9',
+              '#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA',
+              '#E34270',  '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270']
   ))])
 
 fig.update_layout(
     title=dict(text="SPD Crime Dispatches by Precinct 2020", font_size=30),
     font_size=10,
     font_color='black',
-    paper_bgcolor = 'pink'
+    paper_bgcolor = 'white'
 )
+
 fig.show()
 
