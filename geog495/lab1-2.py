@@ -55,7 +55,7 @@ fig = go.Figure(data=[go.Sankey(
   ))])
 
 fig.update_layout(
-    title=dict(text="Seattle Police Department Crime Dispatches by Precinct", font_size=30),
+    title=dict(text="SPD Crime Dispatches by Precinct 2020", font_size=30),
     font_size=10,
     font_color='black',
     paper_bgcolor = 'pink'
