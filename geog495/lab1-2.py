@@ -1,6 +1,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
+from itertools import repeat
 
 crimeData = pd.read_csv('cleaned_2020.csv')
 dispatches = crimeData.total_dispatches
@@ -33,6 +34,16 @@ SNY = np.linspace(0.65, 1, num=15)
 allX = np.concatenate((precinctX, WNX, NNX, SWNX, ENX, SNX))
 allY = np.concatenate((precinctY, WNY, NNY, SWNY, ENY, SNY))
 
+# Color we are using for origin nodes and links
+color = ["#F4AC74", "#9DF474", "#96EAE9", "#E696EA", "#E34270"]
+# repeating link colors
+link_color = []
+link_color.extend(repeat(color[0], 10))
+link_color.extend(repeat(color[1], 12))
+link_color.extend(repeat(color[2], 14))
+link_color.extend(repeat(color[3], 10))
+link_color.extend(repeat(color[4], 15))
+
 # Visualization
 fig = go.Figure(data=[go.Sankey(
     node = dict(
@@ -42,7 +53,7 @@ fig = go.Figure(data=[go.Sankey(
       x = allX,
       y = allY,
       hovertemplate = "%{label}",
-      color = ["#F4AC74", "#9DF474", "#96EAE9", "#E696EA", "#E34270"]
+      color = color
     ),
     link = dict(
       source = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -52,11 +63,7 @@ fig = go.Figure(data=[go.Sankey(
                 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],  # indices correspond to labels, eg A1, A2, A1, B1, ...
       target = list(range(5, 67)),
       value = dispatches,
-      color = ['#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74','#F4AC74',
-              '#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474','#9DF474',
-              '#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9','#96EAE9',
-              '#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA','#E696EA',
-              '#E34270',  '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270', '#E34270']
+      color = link_color
   ))])
 
 fig.update_layout(
