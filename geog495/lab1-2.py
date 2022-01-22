@@ -67,7 +67,7 @@ fig = go.Figure(data=[go.Sankey(
   ))])
 
 fig.update_layout(
-    title=dict(text="SPD Crime Dispatches by Precinct 2020<br>" +
+    title=dict(text="Seattle Police Department Crime Dispatches by Precinct 2020<br>" +
                     "Source: " "<a href='https://data.seattle.gov/Public-Safety/SPD-Crime-Data-2008-Present/tazs-3rd5'>"
                     "Seattle public data</a><br>" +
                     '<span style="font-size: 10px;">' +
